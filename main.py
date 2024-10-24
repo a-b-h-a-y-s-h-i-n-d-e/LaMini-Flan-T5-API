@@ -20,6 +20,14 @@ app.add_middleware(
 class PromptRequest(BaseModel):
     prompt : str
 
+@app.get('/')
+def home():
+    return {"msg" : "home"}
+
+@app.get('/about')
+def info():
+    var = lm.config['instruct_model']
+    return {"info" : var}
 
 @app.post('/generate/')
 def generate_response(request : PromptRequest):
